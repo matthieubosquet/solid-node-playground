@@ -1,0 +1,42 @@
+{
+  "name": "<NAME>",
+  "version": "0.0.1",
+  "description": "<DESCRIPTION>",
+  "license": "MIT",
+  "repository": "<REPOSITORY>",
+  "bugs": "<REPOSITORY>/issues",
+  "homepage": "<REPOSITORY>#readme",
+  "keywords": [],
+  "contributors": [
+    "Matthieu Bosquet <matthieu@cognithive.com> (https://github.com/matthieubosquet/)"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/mod.js",
+      "import": "./dist/mod.mjs"
+    },
+    "./x": "./dist/x/index.mjs"
+  },
+  "typesVersions": {
+    "*": {
+      "x": ["dist/x/index.d.ts"]
+    }
+  },
+  "scripts": {
+    "audit": "npm audit --production --audit-level=high",
+    "build": "tsc",
+    "lint": "npm run lint:eslint -- --cache --fix && npm run lint:prettier -- --write",
+    "lint:ci": "npm run lint:eslint && npm run lint:prettier",
+    "lint:eslint": "eslint --ignore-path .gitignore .",
+    "lint:prettier": "prettier --ignore-path .gitignore '**/*.{css,html,json,md,mdx,yml}'",
+    "prepublishOnly": "npm run audit && npm ci --ignore-scripts && npm run build && npm run test",
+    "start": "npm run build -- --watch",
+    "test": "npm run test:unit",
+    "test:unit": "jest --config .jestrc.js --roots test/unit --"
+  }
+}
