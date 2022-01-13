@@ -38,13 +38,10 @@ export async function setPublicAccess(
     changedResourceWithAcr,
     resourcePublicMatcher.url
   );
-  /*
-   * TODO: publish new version of setResourcePolicy and remove current functions
-   * changedResourceWithAcr = acp_v4.setResourcePolicy(
-   *   changedResourceWithAcr,
-   *   resourcePolicy
-   * );
-   */
+  changedResourceWithAcr = acp_v4.setResourcePolicy(
+    changedResourceWithAcr,
+    resourcePolicy
+  );
 
   await acp_v4.saveAcrFor(changedResourceWithAcr, { fetch });
 
