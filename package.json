@@ -38,7 +38,9 @@
     "lint:prettier": "prettier --ignore-path .gitignore '**/*.{css,html,json,md,mdx,yml}'",
     "prepublishOnly": "npm run audit && npm ci --ignore-scripts && npm run build && npm run test",
     "start": "npm run build -- --watch",
-    "test": "npm run test:inrupt:prod",
+    "test": "npm run test:inrupt",
+    "test:inrupt": "npm run test:inrupt-dev-next && npm run test:inrupt:prod",
+    "test:inrupt:dev": "NODE_ENV=inrupt-dev-next jest --config .jestrc.js",
     "test:inrupt:prod": "NODE_ENV=inrupt-production jest --config .jestrc.js"
   },
   "devDependencies": {
