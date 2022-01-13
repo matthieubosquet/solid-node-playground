@@ -1,5 +1,5 @@
 {
-  "name": "<NAME>",
+  "name": "solid-playground",
   "version": "0.0.1",
   "description": "<DESCRIPTION>",
   "license": "MIT",
@@ -8,7 +8,7 @@
   "homepage": "<REPOSITORY>#readme",
   "keywords": [],
   "contributors": [
-    "Matthieu Bosquet <matthieu@cognithive.com> (https://github.com/matthieubosquet/)"
+    "Matthieu Bosquet <matthieu@cognithive.com> (https://github.com/matthieubosquet)"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -24,7 +24,9 @@
   },
   "typesVersions": {
     "*": {
-      "x": ["dist/x/index.d.ts"]
+      "x": [
+        "dist/x/index.d.ts"
+      ]
     }
   },
   "scripts": {
@@ -36,7 +38,31 @@
     "lint:prettier": "prettier --ignore-path .gitignore '**/*.{css,html,json,md,mdx,yml}'",
     "prepublishOnly": "npm run audit && npm ci --ignore-scripts && npm run build && npm run test",
     "start": "npm run build -- --watch",
-    "test": "npm run test:unit",
-    "test:unit": "jest --config .jestrc.js --roots test/unit --"
+    "test": "npm run test:inrupt:prod",
+    "test:inrupt:prod": "NODE_ENV=inrupt-production jest --config .jestrc.js"
+  },
+  "devDependencies": {
+    "@solid/eslint-config-base": "^0.5.0",
+    "@tsconfig/node14": "^1.0.1",
+    "@types/dotenv-flow": "^3.2.0",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^25.3.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.4.7",
+    "prettier": "^2.5.1",
+    "ts-jest": "^27.1.2",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@inrupt/solid-client": "^1.17.0",
+    "@inrupt/solid-client-authn-node": "^1.11.3",
+    "dotenv-flow": "^3.2.0"
   }
 }
