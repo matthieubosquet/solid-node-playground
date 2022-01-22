@@ -1,6 +1,6 @@
 module.exports = {
   preset: "ts-jest",
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: ["src/**/*.ts"],
   coverageReporters: ["text"],
   coverageThreshold: {
@@ -11,4 +11,5 @@ module.exports = {
       statements: 100,
     },
   },
+  setupFiles: ["<rootDir>/test/setup_environment.ts"],
 };

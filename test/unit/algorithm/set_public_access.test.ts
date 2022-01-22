@@ -1,23 +1,28 @@
 import { createSolidDataset, saveSolidDatasetAt } from "@inrupt/solid-client";
 import type { Session } from "@inrupt/solid-client-authn-node";
 import { getEnvironment, getSession, setPublicAccess } from "../../../src/mod";
-import type { TEnvironment } from "../../../src/types";
 
-let env: TEnvironment;
+const env = getEnvironment();
 let session: Session;
-let sessionDataset: string;
+let resource: string;
 
 beforeAll(async () => {
-  env = getEnvironment();
   session = await getSession(env);
-  sessionDataset = `${env.pod}acp-test-${session.info.sessionId}`;
-  await saveSolidDatasetAt(sessionDataset, createSolidDataset(), {
+  resource = `${env.pod}test-${session.info.sessionId}`;
+  await saveSolidDatasetAt(resource, createSolidDataset(), {
     fetch: session.fetch,
   });
 });
 
 describe("setPublicAccess", () => {
   it("returns", async () => {
-    expect(await setPublicAccess(sessionDataset, session)).toBe("value");
+    expect(await setPublicAccess(resource, session)).toBe("value");
   });
+  /*
+   * it("returns", async () => {
+   *   expect(await setPublicAccess(sessionDataset, session)).toEqual(
+   *     expect.objectContaining({ graphs: { default: {} } })
+   *   );
+   * });
+   */
 });

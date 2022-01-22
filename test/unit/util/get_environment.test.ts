@@ -1,7 +1,7 @@
 import { getEnvironment } from "../../../src/mod";
 
 describe("getEnvironment", () => {
-  it("returns", () => {
+  it("retrieves env variables setup via dotenv-flow", () => {
     const env = getEnvironment();
     expect(typeof env.clientId === "string").toBe(true);
     expect(typeof env.clientSecret === "string").toBe(true);

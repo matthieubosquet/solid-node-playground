@@ -1,7 +1,7 @@
 import { getSession } from "../../../src/mod";
 
 describe("getSession", () => {
-  it("returns", async () => {
+  it("retrieves a session", async () => {
     expect(await getSession()).toEqual(expect.objectContaining({}));
   });
 });

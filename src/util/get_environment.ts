@@ -1,10 +1,6 @@
-import { config } from "dotenv-flow";
 import type { TEnvironment } from "../type/t_environment";
 
 export function getEnvironment(): TEnvironment {
-  if (typeof process.env.NAME === "undefined") {
-    config({ path: __dirname.concat("/../env/") });
-  }
   if (
     typeof process.env.CLIENT_ID !== "string" ||
     typeof process.env.CLIENT_SECRET !== "string" ||
@@ -14,12 +10,6 @@ export function getEnvironment(): TEnvironment {
     typeof process.env.STORAGE_SERVICE !== "string"
   ) {
     throw new Error(`Environment variable missing: ${process.env.toString()}`);
-  }
-  if (
-    process.env.NAME !== "Inrupt Dev-Next" &&
-    process.env.NAME !== "Inrupt Production"
-  ) {
-    throw new Error(`Unknown environment: ${process.env.NAME}`);
   }
   return {
     clientId: process.env.CLIENT_ID,
