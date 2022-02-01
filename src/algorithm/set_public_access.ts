@@ -43,9 +43,7 @@ export async function setPublicAccess(
     resourcePolicy
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const x = await acp_v4.saveAcrFor(changedResourceWithAcr, { fetch });
-  console.log(x);
+  await acp_v4.saveAcrFor(changedResourceWithAcr, { fetch: session.fetch });
 
   // return getSolidDataset(resource);
   return "value";

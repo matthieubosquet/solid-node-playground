@@ -1,6 +1,6 @@
-import type { TEnvironment } from "../type/t_environment";
+import type { IEnvironment } from "../type/i_environment";
 
-export function getEnvironment(): TEnvironment {
+export function getEnvironment(): IEnvironment {
   if (
     typeof process.env.CLIENT_ID !== "string" ||
     typeof process.env.CLIENT_SECRET !== "string" ||
