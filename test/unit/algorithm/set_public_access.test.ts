@@ -1,4 +1,8 @@
-import { createSolidDataset, saveSolidDatasetAt } from "@inrupt/solid-client";
+import {
+  createSolidDataset,
+  deleteSolidDataset,
+  saveSolidDatasetAt,
+} from "@inrupt/solid-client";
 import type { Session } from "@inrupt/solid-client-authn-node";
 import { getEnvironment, getSession, setPublicAccess } from "../../../src/mod";
 
@@ -14,15 +18,16 @@ beforeAll(async () => {
   });
 });
 
+afterAll(async () => {
+  await deleteSolidDataset(resource, {
+    fetch: session.fetch,
+  });
+});
+
 describe("setPublicAccess", () => {
   it("returns", async () => {
-    expect(await setPublicAccess(resource, session)).toBe("value");
+    expect(await setPublicAccess(resource, session)).toEqual(
+      expect.objectContaining({ graphs: { default: {} } })
+    );
   });
-  /*
-   * it("returns", async () => {
-   *   expect(await setPublicAccess(sessionDataset, session)).toEqual(
-   *     expect.objectContaining({ graphs: { default: {} } })
-   *   );
-   * });
-   */
 });

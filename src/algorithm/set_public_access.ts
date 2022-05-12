@@ -1,11 +1,15 @@
-import { acp_v4 } from "@inrupt/solid-client";
+import type {
+  SolidDataset,
+  WithServerResourceInfo,
+} from "@inrupt/solid-client";
+import { acp_v4, getSolidDataset } from "@inrupt/solid-client";
 import type { Session } from "@inrupt/solid-client-authn-node";
 import type { WithAccessibleAcr } from "@inrupt/solid-client/dist/acp/acp";
 
 export async function setPublicAccess(
   resource: string,
   session: Session
-): Promise<string> {
+): Promise<SolidDataset & WithServerResourceInfo> {
   const resourceWithAcr = (await acp_v4.getSolidDatasetWithAcr(resource, {
     fetch: session.fetch,
   })) as WithAccessibleAcr;
@@ -45,6 +49,5 @@ export async function setPublicAccess(
 
   await acp_v4.saveAcrFor(changedResourceWithAcr, { fetch: session.fetch });
 
-  // return getSolidDataset(resource);
-  return "value";
+  return getSolidDataset(resource, { fetch: session.fetch });
 }
